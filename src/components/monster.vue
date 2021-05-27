@@ -1,14 +1,17 @@
 <template>
   <div class="">
     <div class="card m-3 shadow-lg">
-      <img :src="image" class="monsterToken img-fluid" />
-      <div class="card-header">
-        <div class="">
-          <strong>{{ monster.name }}</strong>
-          HP: {{ this.HP }} AC: {{ monster.ac[0].ac }}
+      
+      <div class="card-header row">
+        
+        <img :src="image" class="monsterToken img-fluid" />
+        <!--<img id="shield" src="@/assets/shield.png">-->
+        <div class="col-lg-6">
+          <h2>{{ monster.name }}</h2>
+          HP: {{ this.HP }}
 
           <!-- Progress Bar -->
-          <div class="progress p-0 w-50">
+          <div class="progress p-0 w-100">
             <div
               class="progress-bar bg-danger"
               role="progressbar"
@@ -17,7 +20,7 @@
           </div>
           <!-- Form Controls -->
           <form class="my-2">
-            <div class="col-6">
+            <div class="">
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="btn btn-outline-danger mx-1 col" @click="hurt()"
@@ -46,7 +49,16 @@
           Source:
           <div class="badge bg-primary">{{ monster.source }}</div>
         </div>
+        <span  class="col-lg-6 py-3">
+          <span id="armorClass" class="h1 p-3">
+            {{monster.ac[0].ac}}
+            </span>
+        </span>
+        
+        
+        
       </div>
+      
 
       <div class="stats card-body float-left">
         <!-- Stats -->
@@ -158,11 +170,26 @@ export default {
 </script>
 <style scoped>
 .monsterToken {
-  width: 150px;
+  width: 175px;
   height: auto;
   position: absolute;
   display: inline;
   left: 75%;
-  top: -5%;
+  top: -20px;
+  z-index: 2;
+}
+#shield
+{
+  width: 100px;
+  left: 50%;
+  position: absolute;
+
+
+}
+#armorClass
+{
+  background-image: url('~@/assets/shield.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 </style>
