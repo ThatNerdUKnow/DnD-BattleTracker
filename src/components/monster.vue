@@ -1,9 +1,13 @@
 <template>
-    <div class="monster">
-        {{monster.name}} <br>
-        HP: {{monster.hp.average}} <br>
-        <div class="stats">
-        Armor Class: {{monster.ac[0].ac}} <br>
+    <div class="card m-3">
+    <div class="card-header">
+        <strong>{{monster.name}}</strong> <br> Source: <div class="badge bg-primary">{{monster.source}}</div>
+    </div>
+        
+       
+        <div class="stats card-body">
+             HP: {{monster.hp}} <br>
+        Armor Class: {{monster.ac}} <br>
         STR: {{monster.str}} <br>
         DEX: {{monster.dex}} <br>
         CON: {{monster.con}} <br>
@@ -25,7 +29,5 @@ export default {
 }
 </script>
 <style scoped>
-.monster{
-    padding: 5px;
-}
+
 </style>

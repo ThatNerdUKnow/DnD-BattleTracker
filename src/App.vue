@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <div v-for="monster in monsters" :key="monster.name">
+    <div class='row row-cols-xl-4'>
+    <div v-for="monster in monsters" :key="monster.id">
       <monster :monster="monster"></monster>
+    </div>
     </div>
   </div>
 </template>
@@ -12,8 +13,9 @@
 const baseURL = "https://5e.tools/data/bestiary/"
 const axios = require('axios')
 import monster from './components/monster.vue'
+import {v4 as uuid} from 'uuid'
 
-console.log(monster);
+
 export default {
   name: 'App',
   components: {
@@ -21,7 +23,7 @@ export default {
   },
   data: function(){
     return {
-      monsters: []
+      monsters: [],
     }
   },
   async mounted() {
@@ -30,8 +32,8 @@ export default {
       Object.entries(res.data).forEach(data=>{
         axios.get(baseURL + data[1]).then(res=>{
           res.data.monster.forEach(monster=>{
+            monster.id = uuid()
             this.monsters.push(monster)
-            console.log(monster.name)
           })
         })
       })
