@@ -1,48 +1,55 @@
 <template>
   <div class="card m-3 col-lg-4">
-    <img :src='image' class='monsterToken img-fluid'>
+    <img :src="image" class="monsterToken img-fluid" />
     <div class="card-header">
-      <div class=''>
-      <strong>{{ monster.name }}</strong>
-      HP: {{ this.HP }}
-      
+      <div class="">
+        <strong>{{ monster.name }}</strong>
+        HP: {{ this.HP }}
 
-      <!-- Progress Bar -->
-      <div class="progress p-0 w-50">
-        <div
-          class="progress-bar bg-danger"
-          role="progressbar"
-          :style="'width: ' + 100 * (this.HP / monster.hp.average) + '%'"
-        ></div>
+        <!-- Progress Bar -->
+        <div class="progress p-0 w-50">
+          <div
+            class="progress-bar bg-danger"
+            role="progressbar"
+            :style="'width: ' + 100 * (this.HP / monster.hp.average) + '%'"
+          ></div>
+        </div>
+<!-- Form Controls -->
+      <form class="my-2">
+        <div class="col-6">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="btn btn-outline-danger mx-1 col" @click="hurt()"
+                >Hurt</span
+              >
+            </div>
+            <input
+              class="form-control col-auto"
+              type="number"
+              min="0"
+              v-model="damage"
+              :max="monster.hp.average"
+            />
+            <div class="input-group-append">
+              <div class="btn btn-outline-success mx-1" @click="heal()">
+                Heal
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+        
+
+        <span class="btn btn-outline-danger btn-sm mx-2" @click="remove()"
+          >Remove</span
+        >
+        Source:
+        <div class="badge bg-primary">{{ monster.source }}</div>
       </div>
-
-      <br/>
-
-      <span class="btn btn-outline-danger btn-sm mx-2" @click="remove()">Remove</span>
-      Source:
-      <div class="badge bg-primary">{{ monster.source }}</div>
-      </div>
-      
-      
     </div>
 
     <div class="stats card-body float-left">
       
-
-      <!-- Form Controls -->
-      <form class="my-2">
-        <div class="col-lg-2">
-        <input
-          class="form-control"
-          type="number"
-          min="0"
-          v-model="damage"
-          :max="monster.hp.average"
-        />
-        </div>
-        <div class="btn btn-outline-danger mx-1" @click="hurt()">Hurt</div>
-        <div class="btn btn-outline-success mx-1" @click="heal()">Heal</div>
-      </form>
 
       <br />
 
@@ -70,7 +77,12 @@ export default {
     return {
       HP: this.monster.hp.average,
       damage: 0,
-      image: "https://5e.tools/img/" + this.monster.source + "/" + this.monster.name + ".png"
+      image:
+        "https://5e.tools/img/" +
+        this.monster.source +
+        "/" +
+        this.monster.name +
+        ".png",
     };
   },
   methods: {
@@ -95,22 +107,19 @@ export default {
     cleanup() {
       this.damage = 0;
     },
-    remove()
-    {
-      this.$emit("remove",this.monster.n)
-    }
+    remove() {
+      this.$emit("remove", this.monster.n);
+    },
   },
 };
 </script>
 <style scoped>
-.monsterToken
-{
+.monsterToken {
   width: 150px;
   height: auto;
   position: absolute;
   display: inline;
   left: 85%;
   top: -5%;
-  
 }
 </style>
