@@ -1,7 +1,7 @@
 # dnd-battletracker
 yeah, it's a work in progress.
 
-##TODO
+## TODO
 Figure out how to display all the monster's stats and stuff
 Make the HP stat interactive
 Make a sidebar sort of thingy that lets you add monsters to the battle
