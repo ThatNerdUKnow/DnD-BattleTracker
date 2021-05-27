@@ -8,7 +8,7 @@
         <!--<img id="shield" src="@/assets/shield.png">-->
         <div class="col-lg-6">
           <h2>{{ monster.name }}</h2>
-          HP: {{ this.HP }}
+          <strong>HP: {{ this.HP }} </strong>
 
           <!-- Progress Bar -->
           <div class="progress p-0 w-100">
