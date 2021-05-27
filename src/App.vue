@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    
+    <div v-for="monster in monsters" :key="monster.name">
+      <monster :monster="monster"></monster>
+    </div>
   </div>
 </template>
 
@@ -9,15 +11,16 @@
 
 const baseURL = "https://5e.tools/data/bestiary/"
 const axios = require('axios')
+import monster from './components/monster.vue'
 
+console.log(monster);
 export default {
   name: 'App',
   components: {
-    
+    monster
   },
   data: function(){
     return {
-      test: "Test",
       monsters: []
     }
   },
