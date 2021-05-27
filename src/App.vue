@@ -1,15 +1,8 @@
 <template>
-  <div id="app" class="">
+  <div id="app" class="bg-light">
     <span class="row">
       <sidebar @addMonster="addMonster($event)" :monsters="monsters"></sidebar>
-      <!--
-    <div class='row row-cols-xl-2 col-lg-8'>
-    <div v-for="monster in monsters" :key="monster.id">
-      <monster :monster="monster"></monster>
-    </div>
-    <encounter></encounter>
-    </div>
-    -->
+     
       <encounter
         id="encounter"
         class="col-lg-10"
@@ -95,6 +88,6 @@ export default {
 }
 
 #encounter {
-  height: 100%;
+  
 }
 </style>

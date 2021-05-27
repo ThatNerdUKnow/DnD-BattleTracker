@@ -1,9 +1,9 @@
 <template>
-    <div >
+    <div class="">
         <h2>Encounter</h2> 
         <div class="container-fluid">
             
-        <div class="row">
+        <div id="encounter" class="row overflow-auto">
         <div class='col-lg-4' v-for="monster in monsters" :key="monster.n">
             <monster :monster="monster" @remove="remove($event)"></monster>
         </div>
@@ -40,3 +40,12 @@ export default {
     }
 }
 </script>
+<style scoped>
+#encounter
+{
+    min-height: 100%;
+    max-height: 100%
+    
+    
+}
+</style>
