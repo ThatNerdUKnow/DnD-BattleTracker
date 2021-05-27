@@ -88,7 +88,7 @@ export default {
     },
     remove()
     {
-      this.$emit("remove",this.monster.id)
+      this.$emit("remove",this.monster.n)
     }
   },
 };

@@ -1,66 +1,87 @@
 <template>
-  <div id="app">
-    <span class='row'>
-    <sidebar :monsters="monsters"></sidebar>
+  <div id="app" class="">
+    <span class="row">
+      <sidebar @addMonster="addMonster($event)" :monsters="monsters"></sidebar>
+      <!--
     <div class='row row-cols-xl-2 col-lg-8'>
     <div v-for="monster in monsters" :key="monster.id">
       <monster :monster="monster"></monster>
     </div>
-    
+    <encounter></encounter>
     </div>
+    -->
+      <encounter
+        id="encounter"
+        class="col-lg-10 h-100"
+        :monsters="encounter"
+        @remove="remove($event)"
+      ></encounter>
+      <monster></monster>
     </span>
   </div>
 </template>
 
 <script>
-
-const baseURL = "https://5e.tools/data/bestiary/"
-const axios = require('axios')
-import monster from './components/monster.vue'
-import sidebar from './components/sidebar/sidebar.vue'
-import {v4 as uuid} from 'uuid'
-
+const baseURL = "https://5e.tools/data/bestiary/";
+const axios = require("axios");
+import monster from "./components/monster.vue";
+import sidebar from "./components/sidebar/sidebar.vue";
+import encounter from "./components/encounter/encounter.vue";
+import { v4 as uuid } from "uuid";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     monster,
-    sidebar
+    sidebar,
+    encounter,
   },
-  data: function(){
+  data: function () {
     return {
       monsters: [],
-    }
+      encounter: [],
+    };
+  },
+  methods: {
+    addMonster(data) {
+      data.n = uuid();
+      console.log(data.n)
+      this.encounter.push({...data});
+    },
+    remove(data) {
+      this.encounter = this.encounter.filter((monster) => {
+       return  monster.n != data;
+        
+      });
+    },
   },
   async mounted() {
-    var totalUrl = baseURL + "index.json"
-    await axios.get(totalUrl).then(res=>{
-      Object.entries(res.data).forEach(data=>{
-        axios.get(baseURL + data[1]).then(res=>{
-          res.data.monster.forEach(monster=>{
-            monster.id = uuid()
-            try{
-            if(monster.hp.average && monster.ac[0])
-            {
-            this.monsters.push(monster)
+    var totalUrl = baseURL + "index.json";
+    await axios.get(totalUrl).then((res) => {
+      Object.entries(res.data).forEach((data) => {
+        axios.get(baseURL + data[1]).then((res) => {
+          res.data.monster.forEach((monster) => {
+            monster.id = uuid();
+            try {
+              if (monster.hp.average && monster.ac[0]) {
+                this.monsters.push(monster);
+              } else {
+                console.log(
+                  monster.name,
+                  monster.source,
+                  monster.hp,
+                  monster.ac
+                );
+              }
+            } catch (err) {
+              console.log(monster.name, monster.source);
             }
-            else
-            {
-              console.log(monster.name,monster.source,monster.hp,monster.ac)
-            }
-            }
-            catch(err)
-            {
-              console.log(monster.name, monster.source)
-            }
-          })
-        })
-      })
-    })
-  }
-  
-
-}
+          });
+        });
+      });
+    });
+  },
+};
 </script>
 
 <style>
@@ -69,6 +90,11 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  max-height: 100vh;
+}
+
+#encounter {
+  min-height: 100vh;
   max-height: 100vh;
 }
 </style>
