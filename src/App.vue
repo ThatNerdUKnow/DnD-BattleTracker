@@ -1,18 +1,41 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+const baseURL = "https://5e.tools/data/bestiary/"
+const axios = require('axios')
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    
+  },
+  data: function(){
+    return {
+      test: "Test",
+      monsters: []
+    }
+  },
+  async mounted() {
+    var totalUrl = baseURL + "index.json"
+    await axios.get(totalUrl).then(res=>{
+      Object.entries(res.data).forEach(data=>{
+        axios.get(baseURL + data[1]).then(res=>{
+          res.data.monster.forEach(monster=>{
+            this.monsters.push(monster)
+            console.log(monster.name)
+          })
+        })
+      })
+    })
   }
+  
+
 }
 </script>
 
