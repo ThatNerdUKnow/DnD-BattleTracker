@@ -91,10 +91,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   max-height: 100vh;
+  padding: 50px;
 }
 
 #encounter {
-  min-height: 100vh;
-  max-height: 100vh;
+  height: 100%;
 }
 </style>

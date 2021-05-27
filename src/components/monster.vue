@@ -4,19 +4,11 @@
     <div class="card-header">
       <div class=''>
       <strong>{{ monster.name }}</strong>
-      <div class="btn btn-outline-danger btn-sm mx-2" @click="remove()">Remove</div>
-      </div>
-      <br />
-      Source:
-      <div class="badge bg-primary">{{ monster.source }}</div>
-    </div>
-
-    <div class="stats card-body float-left">
       HP: {{ this.HP }}
       
 
       <!-- Progress Bar -->
-      <div class="progress p-0">
+      <div class="progress p-0 w-50">
         <div
           class="progress-bar bg-danger"
           role="progressbar"
@@ -24,9 +16,22 @@
         ></div>
       </div>
 
+      <br/>
+
+      <span class="btn btn-outline-danger btn-sm mx-2" @click="remove()">Remove</span>
+      Source:
+      <div class="badge bg-primary">{{ monster.source }}</div>
+      </div>
+      
+      
+    </div>
+
+    <div class="stats card-body float-left">
+      
+
       <!-- Form Controls -->
       <form class="my-2">
-        <div class="col-lg-1">
+        <div class="col-lg-2">
         <input
           class="form-control"
           type="number"
