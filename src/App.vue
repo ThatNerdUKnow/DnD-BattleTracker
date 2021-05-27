@@ -4,6 +4,7 @@
     <div v-for="monster in monsters" :key="monster.id">
       <monster :monster="monster"></monster>
     </div>
+    
     </div>
   </div>
 </template>
