@@ -12,7 +12,6 @@
 
     <div class="stats card-body float-left">
       HP: {{ this.HP }}
-
       
 
       <!-- Progress Bar -->
