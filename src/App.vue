@@ -9,7 +9,6 @@
         :monsters="encounter"
         @remove="remove($event)"
       ></encounter>
-      <monster></monster>
     </span>
   </div>
 </template>
@@ -17,7 +16,7 @@
 <script>
 const baseURL = "https://5e.tools/data/bestiary/";
 const axios = require("axios");
-import monster from "./components/monster.vue";
+
 import sidebar from "./components/sidebar/sidebar.vue";
 import encounter from "./components/encounter/encounter.vue";
 import { v4 as uuid } from "uuid";
@@ -25,7 +24,6 @@ import { v4 as uuid } from "uuid";
 export default {
   name: "App",
   components: {
-    monster,
     sidebar,
     encounter,
   },
