@@ -1,13 +1,28 @@
 <template>
   <div class="card m-3">
     <div class="card-header">
-      <strong>{{ monster.name }}</strong> <br />
+      <div class=''>
+      <strong>{{ monster.name }}</strong>
+      <div class="btn btn-outline-danger btn-sm mx-2" @click="remove()">Remove</div>
+      </div>
+      <br />
       Source:
       <div class="badge bg-primary">{{ monster.source }}</div>
     </div>
 
     <div class="stats card-body float-left">
       HP: {{ this.HP }}
+
+      
+
+      <!-- Progress Bar -->
+      <div class="progress p-0">
+        <div
+          class="progress-bar bg-danger"
+          role="progressbar"
+          :style="'width: ' + 100 * (this.HP / monster.hp.average) + '%'"
+        ></div>
+      </div>
 
       <!-- Form Controls -->
       <form class="my-2">
@@ -21,15 +36,6 @@
         />
         <div class="btn btn-outline-success" @click="heal()">Heal</div>
       </form>
-
-      <!-- Progress Bar -->
-      <div class="progress p-0">
-        <div
-          class="progress-bar bg-danger"
-          role="progressbar"
-          :style="'width: ' + 100 * (this.HP / monster.hp.average) + '%'"
-        ></div>
-      </div>
 
       <br />
 
@@ -81,6 +87,10 @@ export default {
     cleanup() {
       this.damage = 0;
     },
+    remove()
+    {
+      this.$emit("remove",this.monster.id)
+    }
   },
 };
 </script>

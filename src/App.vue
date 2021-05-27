@@ -2,7 +2,7 @@
   <div id="app">
     <span class='row'>
     <sidebar :monsters="monsters"></sidebar>
-    <div class='row row-cols-xl-3 col-lg-8'>
+    <div class='row row-cols-xl-2 col-lg-8'>
     <div v-for="monster in monsters" :key="monster.id">
       <monster :monster="monster"></monster>
     </div>
@@ -68,8 +68,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  max-height: 100vh;
 }
 </style>
