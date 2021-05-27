@@ -1,5 +1,5 @@
 <template>
-  <div id="content" class="col-lg-2 h-100 overflow-auto">
+  <div id="content" class="col-md-2 h-100 overflow-auto no-gutters">
     <form class="">
         <input type="text" class="form-control" placeholder="Search for a monster 🔎" v-model="searchTerm">
     </form>

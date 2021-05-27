@@ -1,7 +1,7 @@
 <template>
-  <div id="app" class="bg-light">
+  <div id="app" class="bg-light p-lg-5 p-1">
     <span class="row">
-      <sidebar @addMonster="addMonster($event)" :monsters="monsters"></sidebar>
+      <sidebar class="" @addMonster="addMonster($event)" :monsters="monsters"></sidebar>
      
       <encounter
         id="encounter"
@@ -84,7 +84,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   max-height: 100vh;
-  padding: 50px;
 }
 
 #encounter {

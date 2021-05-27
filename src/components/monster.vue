@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="animate__animated animate__fadeInUp">
     <div class="card m-3 shadow-lg">
       
       <div class="card-header row">
