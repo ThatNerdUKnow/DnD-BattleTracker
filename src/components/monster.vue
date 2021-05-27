@@ -6,37 +6,44 @@
       <div class="badge bg-primary">{{ monster.source }}</div>
     </div>
 
-    <div class="stats card-body">
+    <div class="stats card-body float-left">
       HP: {{ this.HP }}
-      DMG: {{damage}}
 
-      <form>
-        <div class="btn btn-danger" @click="hurt()">Hurt</div>
+      <!-- Form Controls -->
+      <form class="my-2">
+        <div class="btn btn-outline-danger" @click="hurt()">Hurt</div>
         <input
+          class="form-control"
           type="number"
           min="0"
-          :value="damage"
+          v-model="damage"
           :max="monster.hp.average"
         />
-        <div class="btn btn-success" @click="heal()">Heal</div>
+        <div class="btn btn-outline-success" @click="heal()">Heal</div>
       </form>
 
+      <!-- Progress Bar -->
       <div class="progress p-0">
         <div
-          class="progress-bar progress-bar-striped bg-danger"
+          class="progress-bar bg-danger"
           role="progressbar"
           :style="'width: ' + 100 * (this.HP / monster.hp.average) + '%'"
         ></div>
       </div>
 
       <br />
-      Armor Class: {{ monster.ac[0].ac }} <br />
-      STR: {{ monster.str }} <br />
-      DEX: {{ monster.dex }} <br />
-      CON: {{ monster.con }} <br />
-      INT: {{ monster.int }} <br />
-      WIS: {{ monster.wis }} <br />
-      CHA: {{ monster.cha }} <br />
+
+      <!-- Stats -->
+      <div class="border border-secondary">
+        <strong>Stats</strong> <br />
+        Armor Class: {{ monster.ac[0].ac }} <br />
+        STR: {{ monster.str }} <br />
+        DEX: {{ monster.dex }} <br />
+        CON: {{ monster.con }} <br />
+        INT: {{ monster.int }} <br />
+        WIS: {{ monster.wis }} <br />
+        CHA: {{ monster.cha }} <br />
+      </div>
     </div>
   </div>
 </template>
@@ -45,21 +52,34 @@ export default {
   name: "monster",
   props: {
     monster: Object,
-    damage: Number
   },
   data() {
     return {
       HP: this.monster.hp.average,
-      
+      damage: 0,
     };
   },
   methods: {
-    hurt() {},
+    hurt() {
+      if (this.damage > this.HP) {
+        this.HP = 0;
+      } else {
+        this.HP = this.HP - this.damage;
+      }
+      this.cleanup();
+    },
     heal() {
-        console.log(this.HP)
-        console.log(this.damage)
-        console.log(this.HP + this.damage)
-      this.HP = this.HP + this.damage;
+      var diff = this.monster.hp.average - this.HP;
+      if (this.damage > diff) {
+        this.HP = this.monster.hp.average;
+      } else {
+        this.HP = this.HP + Number(this.damage);
+      }
+
+      this.cleanup();
+    },
+    cleanup() {
+      this.damage = 0;
     },
   },
 };

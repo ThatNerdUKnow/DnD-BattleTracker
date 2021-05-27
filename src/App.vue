@@ -1,11 +1,14 @@
 <template>
   <div id="app">
-    <div class='row row-cols-xl-4'>
+    <span class='row'>
+    <sidebar :monsters="monsters"></sidebar>
+    <div class='row row-cols-xl-3 col-lg-8'>
     <div v-for="monster in monsters" :key="monster.id">
       <monster :monster="monster"></monster>
     </div>
     
     </div>
+    </span>
   </div>
 </template>
 
@@ -14,13 +17,15 @@
 const baseURL = "https://5e.tools/data/bestiary/"
 const axios = require('axios')
 import monster from './components/monster.vue'
+import sidebar from './components/sidebar/sidebar.vue'
 import {v4 as uuid} from 'uuid'
 
 
 export default {
   name: 'App',
   components: {
-    monster
+    monster,
+    sidebar
   },
   data: function(){
     return {
@@ -34,7 +39,20 @@ export default {
         axios.get(baseURL + data[1]).then(res=>{
           res.data.monster.forEach(monster=>{
             monster.id = uuid()
+            try{
+            if(monster.hp.average && monster.ac[0])
+            {
             this.monsters.push(monster)
+            }
+            else
+            {
+              console.log(monster.name,monster.source)
+            }
+            }
+            catch(err)
+            {
+              console.log(monster.name, monster.source)
+            }
           })
         })
       })
