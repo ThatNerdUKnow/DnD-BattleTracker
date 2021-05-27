@@ -4,7 +4,7 @@
         <input type="text" class="form-control" placeholder="Search for a monster 🔎" v-model="searchTerm">
     </form>
     <ul v-for="monster in monsters" :key="monster.id" class="list-group">
-      <li v-if="monster.name.includes(searchTerm)" class="list-group-item">
+      <li v-if="monster.name.toLowerCase().includes(searchTerm.toLowerCase())" class="list-group-item">
         <minimonster  @add="addMonster($event)" :monster="monster"></minimonster>
       </li>
     </ul>

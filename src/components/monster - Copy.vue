@@ -1,32 +1,43 @@
 <template>
-  <div class="card m-3 col-lg-4">
-    <img :src='image' class='monsterToken img-fluid'>
-    <div class="card-header">
-      <div class=''>
+  <div class="card m-3">
+    <div class="card-header d-flex">
+      <img :src="image" class="img-fluid col-1 d-inline" />
+      <div class="d-inline">
+        
       <strong>{{ monster.name }}</strong>
-      <div class="btn btn-outline-danger btn-sm mx-2" @click="remove()">Remove</div>
-      </div>
-      <br />
-      Source:
-      <div class="badge bg-primary">{{ monster.source }}</div>
-    </div>
 
-    <div class="stats card-body float-left">
+     
+
       HP: {{ this.HP }}
-      
 
       <!-- Progress Bar -->
-      <div class="progress p-0">
+      <div class="progress">
         <div
           class="progress-bar bg-danger"
           role="progressbar"
           :style="'width: ' + 100 * (this.HP / monster.hp.average) + '%'"
         ></div>
       </div>
+      </div>
+      
 
+      <br />
+      Source:
+      <div class="badge bg-primary">{{ monster.source }}</div>
+
+       <div
+        class="btn btn-outline-danger btn-sm mx-2 float-right"
+        @click="remove()"
+      >
+        Remove
+      </div>
+    </div>
+
+    <!-- Card Body-->
+    <div class="stats card-body float-left">
       <!-- Form Controls -->
       <form class="my-2">
-        <div class="col-lg-1">
+        <div class="btn btn-outline-danger" @click="hurt()">Hurt</div>
         <input
           class="form-control"
           type="number"
@@ -34,9 +45,7 @@
           v-model="damage"
           :max="monster.hp.average"
         />
-        </div>
-        <div class="btn btn-outline-danger mx-1" @click="hurt()">Hurt</div>
-        <div class="btn btn-outline-success mx-1" @click="heal()">Heal</div>
+        <div class="btn btn-outline-success" @click="heal()">Heal</div>
       </form>
 
       <br />
@@ -65,7 +74,12 @@ export default {
     return {
       HP: this.monster.hp.average,
       damage: 0,
-      image: "https://5e.tools/img/" + this.monster.source + "/" + this.monster.name + ".png"
+      image:
+        "https://5e.tools/img/" +
+        this.monster.source +
+        "/" +
+        this.monster.name +
+        ".png",
     };
   },
   methods: {
@@ -90,22 +104,11 @@ export default {
     cleanup() {
       this.damage = 0;
     },
-    remove()
-    {
-      this.$emit("remove",this.monster.n)
-    }
+    remove() {
+      this.$emit("remove", this.monster.n);
+    },
   },
 };
 </script>
 <style scoped>
-.monsterToken
-{
-  width: 150px;
-  height: auto;
-  position: absolute;
-  display: inline;
-  left: 85%;
-  top: -5%;
-  
-}
 </style>
