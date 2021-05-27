@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class='d-flex justify-content-between'>
       {{monster.name}}
       <div @click="add()" class='btn btn-outline-success'>Add</div>
   </div>

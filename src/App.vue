@@ -46,7 +46,7 @@ export default {
             }
             else
             {
-              console.log(monster.name,monster.source)
+              console.log(monster.name,monster.source,monster.hp,monster.ac)
             }
             }
             catch(err)
