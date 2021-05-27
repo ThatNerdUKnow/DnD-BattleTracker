@@ -1,5 +1,6 @@
 <template>
-  <div class="card m-3 col-lg-4">
+<div class="">
+  <div class="card m-3 ">
     <img :src="image" class="monsterToken img-fluid" />
     <div class="card-header">
       <div class="">
@@ -66,6 +67,7 @@
       </div>
     </div>
   </div>
+  </div>
 </template>
 <script>
 export default {
@@ -119,7 +121,7 @@ export default {
   height: auto;
   position: absolute;
   display: inline;
-  left: 85%;
+  left: 75%;
   top: -5%;
 }
 </style>

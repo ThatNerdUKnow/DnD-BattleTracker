@@ -12,7 +12,7 @@
     -->
       <encounter
         id="encounter"
-        class="col-lg-10 h-100"
+        class="col-lg-10"
         :monsters="encounter"
         @remove="remove($event)"
       ></encounter>

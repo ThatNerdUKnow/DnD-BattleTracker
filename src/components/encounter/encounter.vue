@@ -1,8 +1,13 @@
 <template>
-    <div>
+    <div >
         <h2>Encounter</h2> 
-        <div class='' v-for="monster in monsters" :key="monster.n">
+        <div class="container-fluid">
+            
+        <div class="row">
+        <div class='col-lg-4' v-for="monster in monsters" :key="monster.n">
             <monster :monster="monster" @remove="remove($event)"></monster>
+        </div>
+        </div>
         </div>
     </div>
 </template>
