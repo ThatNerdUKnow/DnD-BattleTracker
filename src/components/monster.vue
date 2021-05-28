@@ -2,8 +2,8 @@
   <div class="animate__animated animate__fadeInUp">
     <div class="card m-3 shadow-lg">
       
-      <div class="card-header row">
-        
+      <span class="card-header">
+        <div class="row">
         <img :src="image" class="monsterToken img-fluid" />
         <!--<img id="shield" src="@/assets/shield.png">-->
         <div class="col-lg-6">
@@ -56,8 +56,8 @@
         </span>
         
         
-        
-      </div>
+        </div>
+      </span>
       
 
       <div class="stats card-body float-left">

@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="bg-light p-lg-5 p-xl-1">
+  <div id="app" class="bg-light p-3">
     
     <span class="row">
       
