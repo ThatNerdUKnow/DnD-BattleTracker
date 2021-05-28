@@ -82,15 +82,20 @@ export default {
 </script>
 
 <style>
+@import url('http://fonts.cdnfonts.com/css/vecna');
+
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Vecna, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16pt;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   max-height: 100vh;
 }
 
-#encounter {
-  
-}
+
+
+
 </style>
