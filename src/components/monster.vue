@@ -175,7 +175,7 @@ export default {
 };
 </script>
 <style scoped>
-@import url("https://fonts.cdnfonts.com/css/augusta");
+
 
 .monsterToken {
   width: 175px;
@@ -197,7 +197,5 @@ export default {
   background-size: cover;
 }
 
-.info {
-  font-family: augusta;
-}
+
 </style>
