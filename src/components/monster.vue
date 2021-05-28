@@ -117,7 +117,7 @@
         <div v-if="monster.action">
           <hr />
           <h3>Actions</h3>
-          <div v-for="action in monster.action" :key="action">
+          <div v-for="action in monster.action" :key="action.name">
             <span class="badge bg-primary mx-1">{{ action.name }}</span>
             <span v-for="entry in action.entries" :key="entry" class="info">{{
               entry
@@ -134,6 +134,10 @@ export default {
   props: {
     monster: Object,
   },
+  mounted(){
+    this.monster.trait.forEach(trait=>{this.parse(trait,this.monster.trait)})
+    this.monster.action.forEach(action=>{this.parse(action,this.monster.action)})
+  },
   data() {
     return {
       HP: this.monster.hp.average,
@@ -144,6 +148,7 @@ export default {
         "/" +
         this.monster.name +
         ".png",
+        regex: /{@[^{@}]+}/g
     };
   },
   methods: {
@@ -171,6 +176,26 @@ export default {
     remove() {
       this.$emit("remove", this.monster.n);
     },
+    parse(data,sender){
+      console.log(sender)
+
+      
+        data.entries.forEach(entry=>{
+          var tags = entry.match(this.regex);
+          //alert(test)
+          
+          if(tags)
+          {
+          tags.forEach(tag=>{
+            console.group(tag)
+            console.group(entry)
+            console.groupEnd()
+            entry.replace(tag,"HEY")
+          })
+          }
+          
+        })
+    }
   },
 };
 </script>
