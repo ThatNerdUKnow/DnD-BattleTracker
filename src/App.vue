@@ -82,7 +82,7 @@ export default {
 </script>
 
 <style>
-@import url('http://fonts.cdnfonts.com/css/vecna');
+@import url('https://fonts.cdnfonts.com/css/vecna');
 
 
 #app {

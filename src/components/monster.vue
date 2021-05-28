@@ -175,7 +175,7 @@ export default {
 };
 </script>
 <style scoped>
-@import url("http://fonts.cdnfonts.com/css/augusta");
+@import url("https://fonts.cdnfonts.com/css/augusta");
 
 .monsterToken {
   width: 175px;

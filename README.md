@@ -2,7 +2,7 @@
 yeah, it's a work in progress.
 
 ## TODO
-- Figure out how to display all the monster's stats and stuff ~ Partially done
+- Figure out how to display all the monster's stats and stuff ✅
 - Make the HP stat interactive ✅
 - Make a sidebar sort of thingy that lets you add and remove monsters from the battle ✅
 - Track initative for monsters and PC's (this will probably require making a new vue component)
