@@ -1,66 +1,64 @@
 <template>
   <div class="animate__animated animate__fadeInUp">
     <div class="card m-3 shadow-lg">
-      
       <span class="card-header">
         <div class="row">
-        <img :src="image" class="monsterToken img-fluid" />
-        <!--<img id="shield" src="@/assets/shield.png">-->
-        <div class="col-lg-6">
-          <h2>{{ monster.name }}</h2>
-          <strong>HP: {{ this.HP }} </strong>
+          <img :src="image" class="monsterToken img-fluid" />
+          <!--<img id="shield" src="@/assets/shield.png">-->
+          <div class="col-lg-6">
+            <h2>{{ monster.name }}</h2>
+            <strong>HP: {{ this.HP }} </strong>
 
-          <!-- Progress Bar -->
-          <div class="progress p-0 w-100">
-            <div
-              class="progress-bar bg-danger"
-              role="progressbar"
-              :style="'width: ' + 100 * (this.HP / monster.hp.average) + '%'"
-            ></div>
-          </div>
-          <!-- Form Controls -->
-          <form class="my-2">
-            <div class="">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="btn btn-outline-danger mx-1 col" @click="hurt()"
-                    >Hurt</span
-                  >
-                </div>
-                <input
-                  class="form-control col-auto"
-                  type="number"
-                  min="0"
-                  v-model="damage"
-                  :max="monster.hp.average"
-                />
-                <div class="input-group-append">
-                  <div class="btn btn-outline-success mx-1" @click="heal()">
-                    Heal
+            <!-- Progress Bar -->
+            <div class="progress p-0 w-100">
+              <div
+                class="progress-bar bg-danger"
+                role="progressbar"
+                :style="'width: ' + 100 * (this.HP / monster.hp.average) + '%'"
+              ></div>
+            </div>
+            <!-- Form Controls -->
+            <form class="my-2">
+              <div class="">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span
+                      class="btn btn-outline-danger mx-1 col"
+                      @click="hurt()"
+                      >Hurt</span
+                    >
+                  </div>
+                  <input
+                    class="form-control col-auto"
+                    type="number"
+                    min="0"
+                    v-model="damage"
+                    :max="monster.hp.average"
+                  />
+                  <div class="input-group-append">
+                    <div class="btn btn-outline-success mx-1" @click="heal()">
+                      Heal
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </form>
+            </form>
 
-          <span class="btn btn-outline-danger btn-sm mx-2" @click="remove()"
-            >Remove</span
-          >
-          Source:
-          <div class="badge bg-primary">{{ monster.source }}</div>
-        </div>
-        <div v-if="monster.ac[0].ac"  class="col-lg-6 my-3">
-          <span id="armorClass" class="h1 p-3">
-            <span class='m-2'>
-             {{monster.ac[0].ac}}
-             </span>
+            <span class="btn btn-outline-danger btn-sm mx-2" @click="remove()"
+              >Remove</span
+            >
+            Source:
+            <div class="badge bg-primary">{{ monster.source }}</div>
+          </div>
+          <div v-if="monster.ac[0].ac" class="col-lg-6 my-3">
+            <span id="armorClass" class="h1 p-3">
+              <span class="m-2">
+                {{ monster.ac[0].ac }}
+              </span>
             </span>
-        </div>
-        
-        
+          </div>
         </div>
       </span>
-      
 
       <div class="stats card-body float-left">
         <!-- Stats -->
@@ -104,22 +102,26 @@
             ><span class="mx-1 badge bg-primary">{{ language }} </span></span
           >
         </div>
-        
+
         <div v-if="monster.trait">
           <hr />
-          Traits:
-          <div v-for="trait in monster.trait" :key="trait">
+          <h3>Traits:</h3>
+          <div v-for="trait in monster.trait" :key="trait.name">
             <span class="badge bg-primary mx-1">{{ trait.name }}</span>
-            <span v-for="entry in trait.entries" :key="entry">{{ entry }}</span>
+            <span v-for="entry in trait.entries" :key="entry" class="info">{{
+              entry
+            }}</span>
           </div>
         </div>
-        
+
         <div v-if="monster.action">
-          <hr>
-          Actions
-          <div v-for="action in monster.action" :key ='action'>
-            <span class="badge bg-primary mx-1">{{action.name}}</span>
-            <span v-for="entry in action.entries" :key="entry">{{ entry }}</span>
+          <hr />
+          <h3>Actions</h3>
+          <div v-for="action in monster.action" :key="action">
+            <span class="badge bg-primary mx-1">{{ action.name }}</span>
+            <span v-for="entry in action.entries" :key="entry" class="info">{{
+              entry
+            }}</span>
           </div>
         </div>
       </div>
@@ -173,6 +175,8 @@ export default {
 };
 </script>
 <style scoped>
+@import url("http://fonts.cdnfonts.com/css/augusta");
+
 .monsterToken {
   width: 175px;
   height: auto;
@@ -182,18 +186,18 @@ export default {
   top: -20px;
   z-index: 2;
 }
-#shield
-{
+#shield {
   width: 100px;
   left: 50%;
   position: absolute;
-
-
 }
-#armorClass
-{
-  background-image: url('~@/assets/shield.png');
+#armorClass {
+  background-image: url("~@/assets/shield.png");
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.info {
+  font-family: augusta;
 }
 </style>
