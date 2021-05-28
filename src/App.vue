@@ -86,15 +86,19 @@ export default {
 
 
 #app {
-  font-family: Vecna, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 16pt;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  
+  
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   max-height: 100vh;
 }
 
+h1,h2,h3,h4,h5,h6,th,td{
+  font-family: Vecna,sans-serif;
+  font-size: 16pt;
+}
 
 
 
