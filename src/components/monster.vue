@@ -109,7 +109,7 @@
           <div v-for="trait in monster.trait" :key="trait.name">
             <span class="badge bg-primary mx-1">{{ trait.name }}</span>
             <span v-for="entry in trait.entries" :key="entry" class="info">{{
-              entry
+              parse(entry)
             }}</span>
           </div>
         </div>
@@ -120,7 +120,7 @@
           <div v-for="action in monster.action" :key="action.name">
             <span class="badge bg-primary mx-1">{{ action.name }}</span>
             <span v-for="entry in action.entries" :key="entry" class="info">{{
-              entry
+              parse(entry)
             }}</span>
           </div>
         </div>
@@ -133,10 +133,6 @@ export default {
   name: "monster",
   props: {
     monster: Object,
-  },
-  mounted(){
-    this.monster.trait.forEach(trait=>{this.parse(trait,this.monster.trait)})
-    this.monster.action.forEach(action=>{this.parse(action,this.monster.action)})
   },
   data() {
     return {
@@ -176,25 +172,18 @@ export default {
     remove() {
       this.$emit("remove", this.monster.n);
     },
-    parse(data,sender){
-      console.log(sender)
-
+    parse(entry){
       
-        data.entries.forEach(entry=>{
-          var tags = entry.match(this.regex);
-          //alert(test)
-          
-          if(tags)
-          {
-          tags.forEach(tag=>{
-            console.group(tag)
-            console.group(entry)
-            console.groupEnd()
-            entry.replace(tag,"HEY")
-          })
-          }
-          
+      var tags = [...entry.matchAll(this.regex)]
+      var parsed = entry;
+      if(tags)
+      {
+        tags.forEach(tag=>{
+          parsed = parsed.replace(tag,"test")
         })
+      }
+      
+      return parsed;
     }
   },
 };
