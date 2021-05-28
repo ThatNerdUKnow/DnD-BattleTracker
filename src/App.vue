@@ -1,11 +1,13 @@
 <template>
-  <div id="app" class="bg-light p-lg-5 p-1">
+  <div id="app" class="bg-light p-lg-5 p-xl-1">
+    
     <span class="row">
-      <sidebar class="" @addMonster="addMonster($event)" :monsters="monsters"></sidebar>
+      
+      <sidebar v-if="sidebarVisible" class="" @addMonster="addMonster($event)" :monsters="monsters"></sidebar>
      
       <encounter
         id="encounter"
-        class="col-lg-10"
+        class="col-xl-9"
         :monsters="encounter"
         @remove="remove($event)"
       ></encounter>
@@ -31,6 +33,7 @@ export default {
     return {
       monsters: [],
       encounter: [],
+      sidebarVisible: true
     };
   },
   methods: {
@@ -45,6 +48,9 @@ export default {
         
       });
     },
+    toggleSidebar(){
+      this.sidebarVisible = !this.sidebarVisible;
+    }
   },
   async mounted() {
     var totalUrl = baseURL + "index.json";

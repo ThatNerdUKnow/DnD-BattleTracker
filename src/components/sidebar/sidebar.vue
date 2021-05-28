@@ -1,9 +1,9 @@
 <template>
-<div class="col-md-2">
+<div class="col-xl-3 g-0">
   <form class="">
         <input type="text" class="form-control" placeholder="Search for a monster 🔎" v-model="searchTerm">
     </form>
-  <div id="content" class=" overflow-auto no-gutters">
+  <div id="content" class=" overflow-auto no-gutter">
     
     <ul v-for="monster in monsters" :key="monster.id" class="list-group">
       <li v-if="monster.name.toLowerCase().includes(searchTerm.toLowerCase())" class="list-group-item">
@@ -39,5 +39,6 @@ export default {
 <style scoped>
 #content {
   max-height: 100vh;
+  
 }
 </style>
