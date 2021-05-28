@@ -129,6 +129,8 @@
   </div>
 </template>
 <script>
+
+import {attackTypes} from '../utils/utils'
 export default {
   name: "monster",
   props: {
@@ -179,7 +181,27 @@ export default {
       if(tags)
       {
         tags.forEach(tag=>{
-          parsed = parsed.replace(tag,"test")
+          var input = tag["0"];
+          input = input.replace(/{|}/g,"")
+          var args = input.split(" ")
+          
+          const command = args[0]
+          args.shift()
+          var output = "";
+          switch(command){
+            case '@hit':
+              output = "+ " + args.join()
+            break;
+            case "@atk":
+              
+              output = attackTypes[args.join("")]
+              break;
+            default:
+              output = args.join(" ")
+          }
+
+          
+          parsed = parsed.replace(tag,output)
         })
       }
       
