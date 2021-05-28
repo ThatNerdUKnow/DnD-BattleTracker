@@ -36,8 +36,8 @@ jobs:
       - name: Create build directory
         run: mkdir build
         
-     # - name: Copy files over
-      #  run: cp -r ./dist ./build
+      - name: Copy files over
+        run: cp -r ./dist ./build
         
  
         
