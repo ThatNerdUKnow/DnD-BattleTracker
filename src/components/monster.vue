@@ -102,16 +102,18 @@
             ><span class="mx-1 badge bg-primary">{{ language }} </span></span
           >
         </div>
-        <hr />
+        
         <div v-if="monster.trait">
+          <hr />
           Traits:
           <div v-for="trait in monster.trait" :key="trait">
             <span class="badge bg-primary mx-1">{{ trait.name }}</span>
             <span v-for="entry in trait.entries" :key="entry">{{ entry }}</span>
           </div>
         </div>
-        <hr>
+        
         <div v-if="monster.action">
+          <hr>
           Actions
           <div v-for="action in monster.action" :key ='action'>
             <span class="badge bg-primary mx-1">{{action.name}}</span>
