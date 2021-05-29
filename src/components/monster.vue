@@ -5,7 +5,7 @@
         <div class="row">
           <img :src="image" class="monsterToken img-fluid" />
           <!--<img id="shield" src="@/assets/shield.png">-->
-          <div class="col-lg-6">
+          <div class="col-xl-6">
             <h2>{{ monster.name }}</h2>
             <strong>HP: {{ this.HP }} </strong>
 
