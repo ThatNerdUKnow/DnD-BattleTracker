@@ -194,7 +194,17 @@ export default {
     },
     parse(entry){
       
-      var tags = [...entry.matchAll(this.regex)]
+      var tags = []
+      try
+      {
+       tags = [...entry.matchAll(this.regex)]
+      }
+      catch(err)
+      {
+        console.log(err)
+        console.log(entry)
+        tags = []
+      }
       var parsed = entry;
       if(tags)
       {

@@ -2,10 +2,10 @@
   <div class="bg-light h-100">
     <h2>Encounter</h2>
     <div>
-      <strong
-        >XP: {{ totalXP }} X Multiplier ({{ multiplier }}) = ({{
+      <h4
+        >XP: {{ totalXP }}x({{ multiplier }}) = ({{
           totalXP * multiplier
-        }})</strong
+        }}XP)</h4
       >
     </div>
     <div id="encounter" class="">
