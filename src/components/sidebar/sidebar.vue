@@ -3,7 +3,7 @@
   <form class="">
         <input @blur="toggleSearch(false)" @focus="toggleSearch(true)" type="text" class="form-control" placeholder="Search for a monster 🔎" v-model="searchTerm">
     </form>
-  <div v-if="showSearch" id="content" class=" overflow-auto no-gutter">
+  <div v-if="showSearch" @mouseout="resultsToggle(false)" @mouseover="resultsToggle(true)" id="content" class=" overflow-auto no-gutter">
     
     <ul v-for="monster in monsters" :key="monster.id" class="list-group">
       <li v-if="monster.name.toLowerCase().includes(searchTerm.toLowerCase())" class="list-group-item">
@@ -21,7 +21,8 @@ export default {
   data(){
       return {
           searchTerm: "",
-         searchFocus: false
+         searchFocus: false,
+         resultsFocus: false
       }
   },
   props: {
@@ -32,7 +33,7 @@ export default {
   },
   computed:{
     showSearch(){
-      if(this.searchTerm || this.searchFocus)
+      if(this.searchTerm || this.searchFocus || this.resultsFocus)
       {return true}
       else
       {return false}
@@ -45,6 +46,10 @@ export default {
     toggleSearch(toggle)
     {
       this.searchFocus = toggle
+    },
+    resultsToggle(toggle)
+    {
+      this.resultsFocus = toggle
     }
     
   },
