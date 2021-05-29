@@ -6,7 +6,7 @@
     </div>
     <div id="encounter" class="container-fluid overflow-auto">
       <div class="row overflow-auto">
-        <div class="col-lg-6" v-for="monster in monsters" :key="monster.n">
+        <div class="col-xl-6" v-for="monster in monsters" :key="monster.n">
           <monster :monster="monster" @remove="remove($event)"></monster>
         </div>
       </div>

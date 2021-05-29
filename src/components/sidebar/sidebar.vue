@@ -1,9 +1,9 @@
 <template>
-<div class="col-xl-3 g-0">
+<div class=" g-0">
   <form class="">
-        <input type="text" class="form-control" placeholder="Search for a monster 🔎" v-model="searchTerm">
+        <input @blur="toggleSearch(false)" @focus="toggleSearch(true)" type="text" class="form-control" placeholder="Search for a monster 🔎" v-model="searchTerm">
     </form>
-  <div id="content" class=" overflow-auto no-gutter">
+  <div v-if="showSearch" id="content" class=" overflow-auto no-gutter">
     
     <ul v-for="monster in monsters" :key="monster.id" class="list-group">
       <li v-if="monster.name.toLowerCase().includes(searchTerm.toLowerCase())" class="list-group-item">
@@ -20,7 +20,8 @@ export default {
   name: "sidebar",
   data(){
       return {
-          searchTerm: ""
+          searchTerm: "",
+         searchFocus: false
       }
   },
   props: {
@@ -29,16 +30,31 @@ export default {
   components: {
     minimonster,
   },
+  computed:{
+    showSearch(){
+      if(this.searchTerm || this.searchFocus)
+      {return true}
+      else
+      {return false}
+    }
+  },
   methods: {
     addMonster(data) {
       this.$emit("addMonster", data);
     },
+    toggleSearch(toggle)
+    {
+      this.searchFocus = toggle
+    }
+    
   },
 };
 </script>
 <style scoped>
 #content {
-  max-height: 100vh;
+  position: absolute;
+  max-height: 25vh;
+  z-index: 5;
   
 }
 </style>

@@ -1,13 +1,17 @@
 <template>
-  <div id="app" class="bg-light p-3">
-    
+  <div id="app" class="bg-light p-3 container">
+    <!--
+    <div id="wrapper">
+    <div @click="toggleSidebar()" class="btn btn-primary">Show Sidebar</div>
+    <div class="btn btn-primary">Add Player</div>
+    </div>-->
     <span class="row">
       
-      <sidebar v-if="sidebarVisible" class="" @addMonster="addMonster($event)" :monsters="monsters"></sidebar>
+      <sidebar v-if="sidebarVisible" class="col-xl-3 col-lg-4" @addMonster="addMonster($event)" :monsters="monsters"></sidebar>
      
       <encounter
         id="encounter"
-        class="col-xl-9"
+        class="col-xl-9 col-lg-8"
         :monsters="encounter"
         @remove="remove($event)"
       ></encounter>
@@ -100,6 +104,12 @@ h1,h2,h3,h4,h5,h6,th,td{
   font-size: 16pt;
 }
 
-
+#wrapper
+{
+  position:absolute;
+  left: 85vw;
+  top: 95vh;
+  z-index: 50;
+}
 
 </style>

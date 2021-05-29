@@ -1,5 +1,5 @@
 <template>
-  <div class="animate__animated animate__fadeInUp">
+  <div :id="monster.n" class="animate__animated animate__fadeInUp">
     <div class="card m-3 shadow-lg">
       <span class="card-header">
         <div class="row">
