@@ -50,17 +50,19 @@
             Source:
             <div class="badge bg-primary">{{ monster.source }}</div>
           </div>
-          <div v-if="monster.ac[0].ac" class="col-lg-6 my-3">
-            <span id="armorClass" class="h3 p-3">
+          <div  class="col-lg-6 my-3">
+            <div @click="toggleStats()" class="btn btn-primary mb-3">{{showStats? "Hide": "Show"}} Stats</div><br>
+            <span v-if="monster.ac[0].ac" id="armorClass" class="h3 p-3">
               <span class="">
                 {{ monster.ac[0].ac }}
               </span>
             </span>
+            
           </div>
         </div>
       </span>
 
-      <div class="stats card-body float-left">
+      <div v-if="showStats" class="stats card-body float-left animate__animated animate__fadeIn">
         <!-- Stats -->
         <h4>Stats</h4>
         <table class="table">
@@ -157,7 +159,8 @@ export default {
         "/" +
         this.monster.name +
         ".png",
-        regex: /{@[^{@}]+}/g
+        regex: /{@[^{@}]+}/g,
+        showStats: false
     };
   },
   methods: {
@@ -168,6 +171,10 @@ export default {
         this.HP = this.HP - this.damage;
       }
       this.cleanup();
+    },
+    toggleStats()
+    {
+      this.showStats = !this.showStats
     },
     heal() {
       var diff = this.monster.hp.average - this.HP;
