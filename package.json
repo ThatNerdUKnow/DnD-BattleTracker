@@ -9,6 +9,7 @@
     "start": "http-server ./dist"
   },
   "dependencies": {
+    "5eutils": "^1.0.0",
     "@popperjs/core": "^2.9.2",
     "animate.css": "^4.1.1",
     "axios": "^0.21.1",

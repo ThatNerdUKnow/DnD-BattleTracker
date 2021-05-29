@@ -39,7 +39,7 @@ export default {
   methods: {
     addMonster(data) {
       data.n = uuid();
-      console.log(data.n)
+      
       this.encounter.push({...data});
     },
     remove(data) {

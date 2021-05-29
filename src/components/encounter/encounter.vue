@@ -1,6 +1,6 @@
 <template>
     <div class="">
-        <h2>Encounter</h2> 
+        <h2>Encounter</h2>
         <div id="encounter" class="container-fluid overflow-auto">
         
         <div class="row overflow-auto">
@@ -13,6 +13,8 @@
 </template>
 <script>
 import monster from '../monster.vue'
+const tools = require('5eutils')
+
 export default {
     name: "encounter",
     components: {
@@ -24,7 +26,7 @@ export default {
     methods:{
         remove(data)
         {
-            console.log("test")
+            
             this.$emit("remove",data)
         }
     },
@@ -32,8 +34,17 @@ export default {
         combatRating: function(){
             var acc = 0;
             this.monsters.forEach(monster=>{
-                console.log(monster.cr)
-                acc = acc+ monster.cr
+                
+                acc = acc+ tools.Parser.crToNumber(monster.cr)
+            })
+            return acc;
+        },
+        totalXP: function()
+        {
+            var acc = 0;
+            this.monsters.forEach(monster=>{
+                acc = acc + Number(tools.Parser.crToXp(monster.cr))
+                
             })
             return acc;
         }
