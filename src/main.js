@@ -4,6 +4,7 @@ import '@popperjs/core'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'animate.css'
+import '../public/custom.css'
 
 Vue.config.productionTip = false
 

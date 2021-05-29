@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="bg-light p-3 container">
+  <div id="app" class="p-3 container">
     <!--
     <div id="wrapper">
     <div @click="toggleSidebar()" class="btn btn-primary">Show Sidebar</div>
