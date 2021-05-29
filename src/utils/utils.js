@@ -52,6 +52,7 @@ const xpChart = {
 
 function xpMultiplier(enemies) {
     const multipliers = {
+        "0": 0,
         "1": 1,
         "2": 1.5,
         "3-6": 2,
@@ -60,9 +61,8 @@ function xpMultiplier(enemies) {
         "15+": 4
     }
 
-    if (enemies == 1) {
-        return multipliers["1"]
-    }
+    if (enemies == 0) { return multipliers["0"] }
+    else if (enemies == 1) { return multipliers["1"] }
     else if (enemies == 2) { return multipliers["2"] }
     else if (enemies >= 3 && enemies <= 6) { return multipliers["3-6"] }
     else if (enemies >= 7 && enemies <= 10) { return multipliers["7-10"] }
