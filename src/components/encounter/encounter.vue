@@ -2,14 +2,26 @@
   <div class="bg-light h-100">
     <h2>Encounter</h2>
     <div>
-      <strong>XP: {{ totalXP }} X Multiplier ({{ multiplier }}) = ({{totalXP*multiplier}})</strong>
+      <strong
+        >XP: {{ totalXP }} X Multiplier ({{ multiplier }}) = ({{
+          totalXP * multiplier
+        }})</strong
+      >
     </div>
     <div id="encounter" class="">
+      <!--Mosaic experiment-->
+      <div class="h-100 overflow-auto row">
+        <div class="col-lg" v-for="col in chunk" :key="chunk.indexOf(col)">
+          <monster :monster="monster" v-for="monster in col" :key="monster.n" @remove="remove($event)"></monster>
+          
+        </div>
+      </div>
+<!--
       <div class="h-100 overflow-auto row">
         <div class="col-lg-6" v-for="monster in monsters" :key="monster.n">
           <monster :monster="monster" @remove="remove($event)"></monster>
         </div>
-      </div>
+      </div>-->
     </div>
   </div>
 </template>
@@ -17,6 +29,7 @@
 import monster from "../monster.vue";
 const tools = require("5eutils");
 import { xpChart, xpMultiplier } from "../../utils/utils.js";
+
 
 export default {
   name: "encounter",
@@ -39,6 +52,14 @@ export default {
       });
       return acc;
     },
+    chunk: function () {
+      const mIndex = Math.ceil(this.monsters.length/2);
+      const mCopy = [...this.monsters];
+      var chunk = [];
+      chunk.push(mCopy.splice(0,mIndex))
+      chunk.push(mCopy.splice(-mIndex))
+      return chunk
+    },
     totalXP: function () {
       var acc = 0;
       this.monsters.forEach((monster) => {
@@ -52,9 +73,9 @@ export default {
     },
     multiplier: function () {
       var num = this.monsters.length;
-      console.log(num);
+
       const multiplier = xpMultiplier(num);
-      console.log(multiplier);
+
       return multiplier;
     },
   },
