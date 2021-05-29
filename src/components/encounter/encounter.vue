@@ -1,6 +1,6 @@
 <template>
     <div class="">
-        <h2>Encounter</h2>
+        <h2>Encounter</h2>{{totalXP}}
         <div id="encounter" class="container-fluid overflow-auto">
         
         <div class="row overflow-auto">
@@ -14,6 +14,7 @@
 <script>
 import monster from '../monster.vue'
 const tools = require('5eutils')
+import {xpChart} from '../../utils/utils.js'
 
 export default {
     name: "encounter",
@@ -43,7 +44,13 @@ export default {
         {
             var acc = 0;
             this.monsters.forEach(monster=>{
-                acc = acc + Number(tools.Parser.crToXp(monster.cr))
+                
+                if(monster.cr)
+                {
+                var monsterXP = xpChart[monster.cr]
+                
+                acc = acc + monsterXP
+                }
                 
             })
             return acc;

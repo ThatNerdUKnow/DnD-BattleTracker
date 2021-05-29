@@ -51,8 +51,8 @@
             <div class="badge bg-primary">{{ monster.source }}</div>
           </div>
           <div v-if="monster.ac[0].ac" class="col-lg-6 my-3">
-            <span id="armorClass" class="h1 p-3">
-              <span class="m-2">
+            <span id="armorClass" class="h3 p-3">
+              <span class="">
                 {{ monster.ac[0].ac }}
               </span>
             </span>
