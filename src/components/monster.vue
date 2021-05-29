@@ -124,6 +124,17 @@
             }}</span>
           </div>
         </div>
+
+        <div v-if="monster.legendary">
+         <hr>
+         <h3>Legendary Actions</h3>
+         <div v-for="action in monster.legendary" :key="action.name">
+           <span class="badge bg-primary mx-1">{{ action.name }}</span>
+            <span v-for="entry in action.entries" :key="entry" class="info">{{
+              parse(entry)
+            }}</span>
+         </div>
+        </div>
       </div>
     </div>
   </div>
