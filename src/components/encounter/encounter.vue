@@ -4,8 +4,8 @@
     <div>
       <strong>XP: {{ totalXP }} X Multiplier ({{ multiplier }}) = ({{totalXP*multiplier}})</strong>
     </div>
-    <div id="encounter" class=" ">
-      <div class="row h-100 overflow-auto">
+    <div id="encounter" class="">
+      <div class="h-100 overflow-auto row">
         <div class="col-lg-6" v-for="monster in monsters" :key="monster.n">
           <monster :monster="monster" @remove="remove($event)"></monster>
         </div>
