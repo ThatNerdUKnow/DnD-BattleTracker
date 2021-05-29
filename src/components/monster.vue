@@ -23,7 +23,7 @@
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span
-                      class="btn btn-outline-danger mx-1 col"
+                      class="bg-light btn btn-outline-danger mx-1 col"
                       @click="hurt()"
                       >Hurt</span
                     >
@@ -36,7 +36,7 @@
                     :max="monster.hp.average"
                   />
                   <div class="input-group-append">
-                    <div class="btn btn-outline-success mx-1" @click="heal()">
+                    <div class="bg-light btn btn-outline-success mx-1" @click="heal()">
                       Heal
                     </div>
                   </div>
