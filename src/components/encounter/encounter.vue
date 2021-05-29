@@ -1,11 +1,11 @@
 <template>
-  <div class="">
+  <div class="bg-light h-100">
     <h2>Encounter</h2>
     <div>
       <strong>XP: {{ totalXP }} X Multiplier ({{ multiplier }}) = ({{totalXP*multiplier}})</strong>
     </div>
-    <div id="encounter" class="container-fluid overflow-auto">
-      <div class="row overflow-auto">
+    <div id="encounter" class=" ">
+      <div class="row h-100 overflow-auto">
         <div class="col-xl-6" v-for="monster in monsters" :key="monster.n">
           <monster :monster="monster" @remove="remove($event)"></monster>
         </div>

@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="p-3 container">
+  <div id="app" class="py-3 container">
     <!--
     <div id="wrapper">
     <div @click="toggleSidebar()" class="btn btn-primary">Show Sidebar</div>
@@ -7,11 +7,12 @@
     </div>-->
     <span class="row">
       
-      <sidebar v-if="sidebarVisible" class="col-xl-3 col-lg-4" @addMonster="addMonster($event)" :monsters="monsters"></sidebar>
+      <sidebar v-if="sidebarVisible" class="col-12 pb-3" @addMonster="addMonster($event)" :monsters="monsters"></sidebar>
+     
      
       <encounter
         id="encounter"
-        class="col-xl-9 col-lg-8"
+        class="col-12 p-3"
         :monsters="encounter"
         @remove="remove($event)"
       ></encounter>
