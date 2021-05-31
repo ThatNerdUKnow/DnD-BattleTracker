@@ -18,12 +18,12 @@
               ></div>
             </div>
             <!-- Form Controls -->
-            <form class="my-2">
+            <form id="formControls" class="my-2">
               <div class="">
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span
-                      class="bg-light btn btn-outline-danger mx-1 col"
+                      class="btn btn-danger col"
                       @click="hurt()"
                       >Hurt</span
                     >
@@ -37,7 +37,7 @@
                   />
                   <div class="input-group-append">
                     <div
-                      class="bg-light btn btn-outline-success mx-1"
+                      class="btn btn-success"
                       @click="heal()"
                     >
                       Heal
@@ -47,14 +47,14 @@
               </div>
             </form>
 
-            <span class="btn btn-outline-danger btn-sm mx-2" @click="remove()"
+            <span class="btn btn-outline-danger btn-sm mr-2" @click="remove()"
               >Remove</span
             >
             Source:
             <div class="badge bg-primary">{{ monster.source }}</div>
           </div>
           <div class="col-lg-6 my-3">
-            <div @click="toggleStats()" class="btn btn-primary mb-3">
+            <div @click="toggleStats()" class="btn btn-primary btn-sm mb-3">
               {{ showStats ? "Hide" : "Show" }} Stats
             </div>
             <br />
@@ -259,6 +259,11 @@ export default {
   top: -20px;
   z-index: 2;
 }
+
+
+#formControls{
+  z-index: 3
+}
 #shield {
   width: 100px;
   left: 50%;
@@ -268,5 +273,10 @@ export default {
   background-image: url("~@/assets/shield.png");
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.form-control
+{
+  z-index:5
 }
 </style>
