@@ -1,5 +1,5 @@
 <template>
-  <div :id="monster.n" class="animate__animated animate__fadeInUp">
+  <div :id="monster.n" data-class="animate__animated animate__fadeInUp">
     <div class="card m-3 shadow-lg">
       <span class="card-header">
         <div class="row">
@@ -36,7 +36,10 @@
                     :max="monster.hp.average"
                   />
                   <div class="input-group-append">
-                    <div class="bg-light btn btn-outline-success mx-1" @click="heal()">
+                    <div
+                      class="bg-light btn btn-outline-success mx-1"
+                      @click="heal()"
+                    >
                       Heal
                     </div>
                   </div>
@@ -50,19 +53,24 @@
             Source:
             <div class="badge bg-primary">{{ monster.source }}</div>
           </div>
-          <div  class="col-lg-6 my-3">
-            <div @click="toggleStats()" class="btn btn-primary mb-3">{{showStats? "Hide": "Show"}} Stats</div><br>
+          <div class="col-lg-6 my-3">
+            <div @click="toggleStats()" class="btn btn-primary mb-3">
+              {{ showStats ? "Hide" : "Show" }} Stats
+            </div>
+            <br />
             <span v-if="monster.ac[0].ac" id="armorClass" class="h3 p-3">
               <span class="">
                 {{ monster.ac[0].ac }}
               </span>
             </span>
-            
           </div>
         </div>
       </span>
 
-      <div v-if="showStats" class="stats card-body float-left animate__animated animate__fadeIn">
+      <div
+        v-if="showStats"
+        class="stats card-body float-left animate__animated animate__fadeIn"
+      >
         <!-- Stats -->
         <h4>Stats</h4>
         <table class="table">
@@ -75,12 +83,12 @@
             <th>CHA</th>
           </thead>
           <tr>
-            <td>{{ monster.str }}</td>
-            <td>{{ monster.dex }}</td>
-            <td>{{ monster.con }}</td>
-            <td>{{ monster.int }}</td>
-            <td>{{ monster.wis }}</td>
-            <td>{{ monster.cha }}</td>
+            <td>{{ monster.str }}({{this.modifiers.str >=0? "+" + this.modifiers.str:this.modifiers.str}})</td>
+            <td>{{ monster.dex }}({{this.modifiers.dex >=0? "+" + this.modifiers.dex:this.modifiers.dex}})</td>
+            <td>{{ monster.con }}({{this.modifiers.con >=0? "+" + this.modifiers.con:this.modifiers.con}})</td>
+            <td>{{ monster.int }}({{this.modifiers.int >=0? "+" + this.modifiers.int:this.modifiers.int}})</td>
+            <td>{{ monster.wis }}({{this.modifiers.wis >=0? "+" + this.modifiers.wis:this.modifiers.wis}})</td>
+            <td>{{ monster.cha }}({{this.modifiers.cha >=0? "+" + this.modifiers.cha:this.modifiers.cha}})</td>
           </tr>
         </table>
 
@@ -128,22 +136,21 @@
         </div>
 
         <div v-if="monster.legendary">
-         <hr>
-         <h3>Legendary Actions</h3>
-         <div v-for="action in monster.legendary" :key="action.name">
-           <span class="badge bg-primary mx-1">{{ action.name }}</span>
+          <hr />
+          <h3>Legendary Actions</h3>
+          <div v-for="action in monster.legendary" :key="action.name">
+            <span class="badge bg-primary mx-1">{{ action.name }}</span>
             <span v-for="entry in action.entries" :key="entry" class="info">{{
               parse(entry)
             }}</span>
-         </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-
-import {attackTypes} from '../utils/utils'
+import { attackTypes } from "../utils/utils";
 export default {
   name: "monster",
   props: {
@@ -159,9 +166,21 @@ export default {
         "/" +
         this.monster.name +
         ".png",
-        regex: /{@[^{@}]+}/g,
-        showStats: false
+      regex: /{@[^{@}]+}/g,
+      showStats: false,
     };
+  },
+  computed: {
+    modifiers: function () {
+      var str = Math.floor((this.monster.str - 10) / 2);
+      var dex = Math.floor((this.monster.dex - 10) / 2);
+      var con = Math.floor((this.monster.con - 10) / 2);
+      var int = Math.floor((this.monster.int - 10) / 2);
+      var wis = Math.floor((this.monster.wis - 10) / 2);
+      var cha = Math.floor((this.monster.cha - 10) / 2);
+
+      return { str, dex, con, int, wis, cha };
+    },
   },
   methods: {
     hurt() {
@@ -172,9 +191,8 @@ export default {
       }
       this.cleanup();
     },
-    toggleStats()
-    {
-      this.showStats = !this.showStats
+    toggleStats() {
+      this.showStats = !this.showStats;
     },
     heal() {
       var diff = this.monster.hp.average - this.HP;
@@ -192,55 +210,46 @@ export default {
     remove() {
       this.$emit("remove", this.monster.n);
     },
-    parse(entry){
-      
-      var tags = []
-      try
-      {
-       tags = [...entry.matchAll(this.regex)]
-      }
-      catch(err)
-      {
-        console.log(err)
-        console.log(entry)
-        tags = []
+    parse(entry) {
+      var tags = [];
+      try {
+        tags = [...entry.matchAll(this.regex)];
+      } catch (err) {
+        console.log(err);
+        console.log(entry);
+        tags = [];
       }
       var parsed = entry;
-      if(tags)
-      {
-        tags.forEach(tag=>{
+      if (tags) {
+        tags.forEach((tag) => {
           var input = tag["0"];
-          input = input.replace(/{|}/g,"")
-          var args = input.split(" ")
-          
-          const command = args[0]
-          args.shift()
+          input = input.replace(/{|}/g, "");
+          var args = input.split(" ");
+
+          const command = args[0];
+          args.shift();
           var output = "";
-          switch(command){
-            case '@hit':
-              output = "+ " + args.join()
-            break;
+          switch (command) {
+            case "@hit":
+              output = "+ " + args.join();
+              break;
             case "@atk":
-              
-              output = attackTypes[args.join("")]
+              output = attackTypes[args.join("")];
               break;
             default:
-              output = args.join(" ")
+              output = args.join(" ");
           }
 
-          
-          parsed = parsed.replace(tag,output)
-        })
+          parsed = parsed.replace(tag, output);
+        });
       }
-      
+
       return parsed;
-    }
+    },
   },
 };
 </script>
 <style scoped>
-
-
 .monsterToken {
   width: 175px;
   height: auto;
@@ -260,6 +269,4 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
 }
-
-
 </style>

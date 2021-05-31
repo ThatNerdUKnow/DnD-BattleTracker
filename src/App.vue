@@ -76,7 +76,7 @@ export default {
                 );
               }
             } catch (err) {
-              console.log(monster.name, monster.source);
+              console.log(err,monster)
             }
           });
         });
