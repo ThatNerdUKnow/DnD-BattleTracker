@@ -3,7 +3,7 @@
     <div class="card m-3 shadow-lg">
       <span class="card-header">
         <div class="row">
-          <img :src="image" class="monsterToken img-fluid" />
+          <img alt="" :src="image" class="monsterToken img-fluid" />
           <!--<img id="shield" src="@/assets/shield.png">-->
           <div class="col-xl-6">
             <h2>{{ monster.name }}</h2>
