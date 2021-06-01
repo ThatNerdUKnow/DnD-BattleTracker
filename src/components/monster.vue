@@ -7,45 +7,52 @@
           <!--<img id="shield" src="@/assets/shield.png">-->
           <div class="col-xl-6">
             <h2>{{ monster.name }}</h2>
-            <strong>HP: {{ this.HP }} </strong>
 
-            <!-- Progress Bar -->
-            <div class="progress p-0 w-100">
-              <div
-                class="progress-bar bg-danger"
-                role="progressbar"
-                :style="'width: ' + 100 * (this.HP / monster.hp.average) + '%'"
-              ></div>
-            </div>
-            <!-- Form Controls -->
-            <form id="formControls" class="my-2">
-              <div class="">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span
-                      class="btn btn-danger col"
-                      @click="hurt()"
-                      >Hurt</span
-                    >
-                  </div>
-                  <input
-                    class="form-control col-auto"
-                    type="number"
-                    min="0"
-                    v-model="damage"
-                    :max="monster.hp.average"
-                  />
-                  <div class="input-group-append">
-                    <div
-                      class="btn btn-success"
-                      @click="heal()"
-                    >
-                      Heal
+            
+            <div v-if="monster.hp.average">
+              <strong>HP: {{ this.HP }} </strong>
+              <!-- Progress Bar -->
+              <div class="progress p-0 w-100">
+                <div
+                  class="progress-bar bg-danger"
+                  role="progressbar"
+                  :style="'width: ' + 100 * (this.HP / monster.hp.average) + '%'"
+                ></div>
+              </div>
+
+              <!-- Form Controls -->
+              <form id="formControls" class="my-2">
+                <div class="">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span
+                        class="btn btn-danger col"
+                        @click="hurt()"
+                        >Hurt</span
+                      >
+                    </div>
+                    <input
+                      class="form-control col-auto"
+                      type="number"
+                      min="0"
+                      v-model="damage"
+                      :max="monster.hp.average"
+                    />
+                    <div class="input-group-append">
+                      <div
+                        class="btn btn-success"
+                        @click="heal()"
+                      >
+                        Heal
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </form>
+              </form>
+            </div>
+            <div v-if="monster.hp.special || monster.hp.lair">
+              HP: {{monster.hp.special || monster.hp.lair}}
+            </div>
 
             <span class="btn btn-outline-danger btn-sm mr-2" @click="remove()"
               >Remove</span
@@ -155,6 +162,9 @@ export default {
   name: "monster",
   props: {
     monster: Object,
+  },
+  mounted(){
+    console.log(this.monster)
   },
   data() {
     return {

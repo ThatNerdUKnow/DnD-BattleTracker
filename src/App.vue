@@ -65,16 +65,9 @@ export default {
           res.data.monster.forEach((monster) => {
             monster.id = uuid();
             try {
-              if (monster.hp.average && monster.ac[0]) {
+              
                 this.monsters.push(monster);
-              } else {
-                console.log(
-                  monster.name,
-                  monster.source,
-                  monster.hp,
-                  monster.ac
-                );
-              }
+                        
             } catch (err) {
               console.log(err,monster)
             }
