@@ -65,8 +65,10 @@ export default {
           res.data.monster.forEach((monster) => {
             monster.id = uuid();
             try {
-              
+              if(monster.hp)
+              {
                 this.monsters.push(monster);
+              }
                         
             } catch (err) {
               console.log(err,monster)
