@@ -1,6 +1,6 @@
 <template>
-  <div :id="monster.n" data-class="animate__animated animate__fadeInUp">
-    <div class="card m-3 shadow-lg">
+  <div :id="monster.n" data-class="animate__animated animate__fadeInUp" :class="{KO: this.KO}" >
+    <div class="card m-m-3 mb-3 shadow-lg">
       <span class="card-header">
         <div class="row">
           <img alt="" :src="image" class="monsterToken img-fluid" />
@@ -102,7 +102,7 @@
         <div v-if="monster.skill">
           Skills:
           <span v-for="skill in Object.entries(monster.skill)" :key="skill[0]"
-            ><span class="m-1 badge bg-primary"
+            ><span class="m-1 badge bg-info text-dark"
               >{{ skill[0] }} {{ skill[1] }}</span
             ></span
           >
@@ -110,7 +110,7 @@
         <div v-if="monster.senses">
           Senses:
           <span v-for="sense in monster.senses" :key="sense"
-            ><span class="m-1 badge bg-primary">{{ sense }}</span></span
+            ><span class="m-1 badge bg-warning text-dark">{{ sense }}</span></span
           >
         </div>
         <div v-if="monster.languages">
@@ -122,13 +122,13 @@
 
         <div v-if="monster.resist">
           Resistances:
-          <span class="mx-1 badge bg-primary" v-for="resistance in monster.resist" :key="resistance">{{resistance}}</span>
+          <span class="mx-1 badge bg-danger" v-for="resistance in monster.resist" :key="resistance">{{resistance}}</span>
           
         </div>
 
         <div v-if="monster.vulnerable">
           Vulnerabilities:
-          <span class="mx-1 badge bg-primary" v-for="vuln in monster.vulnerable" :key="vuln">{{vuln}}</span>
+          <span class="mx-1 badge bg-success" v-for="vuln in monster.vulnerable" :key="vuln">{{vuln}}</span>
           
         </div>
 
@@ -204,6 +204,9 @@ export default {
 
       return { str, dex, con, int, wis, cha };
     },
+    KO: function(){
+      return this.HP === 0
+    }
   },
   methods: {
     hurt() {
@@ -301,5 +304,10 @@ export default {
 .form-control
 {
   z-index:5
+}
+
+.KO
+{
+  filter: grayscale(90%)
 }
 </style>

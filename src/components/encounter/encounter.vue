@@ -10,7 +10,7 @@
     </div>
     <div id="encounter" class="">
       <!--Mosaic experiment-->
-      <div class="h-100 overflow-auto row">
+      <div class="h-100 overflow-auto row p-2">
         <div class="col-lg" v-for="col in chunk" :key="chunk.indexOf(col)">
           <monster :monster="monster" v-for="monster in col" :key="monster.n" @remove="remove($event)"></monster>
           
