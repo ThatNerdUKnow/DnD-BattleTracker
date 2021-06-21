@@ -120,6 +120,18 @@
           >
         </div>
 
+        <div v-if="monster.resist">
+          Resistances:
+          <span class="mx-1 badge bg-primary" v-for="resistance in monster.resist" :key="resistance">{{resistance}}</span>
+          
+        </div>
+
+        <div v-if="monster.vulnerable">
+          Vulnerabilities:
+          <span class="mx-1 badge bg-primary" v-for="vuln in monster.vulnerable" :key="vuln">{{vuln}}</span>
+          
+        </div>
+
         <div v-if="monster.trait">
           <hr />
           <h3>Traits:</h3>
