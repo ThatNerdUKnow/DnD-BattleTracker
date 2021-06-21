@@ -21,7 +21,7 @@
               </div>
 
               <!-- Form Controls -->
-              <form id="formControls" class="my-2">
+              <form @submit.prevent id="formControls" class="my-2">
                 <div class="">
                   <div class="input-group">
                     <div class="input-group-prepend">

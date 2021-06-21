@@ -1,6 +1,6 @@
 <template>
 <div class=" g-0">
-  <form class="">
+  <form @submit.prevent class="">
         <input @blur="toggleSearch(false)" @focus="toggleSearch(true)" type="text" class="form-control" placeholder="Search for a monster 🔎" v-model="searchTerm">
     </form>
   <div v-if="showSearch" @mouseout="resultsToggle(false,$event)" @mouseover="resultsToggle(true,$event)" id="content" class="w-100 overflow-auto no-gutter">
