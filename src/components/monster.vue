@@ -7,7 +7,7 @@
           <!--<img id="shield" src="@/assets/shield.png">-->
           <div class="col-xl-6">
             <h2>{{ monster.name }}</h2>
-
+            
             
             <div v-if="monster.hp.average">
               <strong>HP: {{ this.HP }} </strong>
@@ -65,9 +65,9 @@
               {{ showStats ? "Hide" : "Show" }} Stats
             </div>
             <br />
-            <span v-if="monster.ac[0].ac" id="armorClass" class="h3 p-3">
+            <span v-if="armorClass" id="armorClass" class="h3 p-3">
               <span class="">
-                {{ monster.ac[0].ac }}
+                {{ armorClass}}
               </span>
             </span>
           </div>
@@ -178,6 +178,7 @@ export default {
         ".png",
       regex: /{@[^{@}]+}/g,
       showStats: false,
+      armorClass: this.monster.ac[0].ac || this.monster.ac[0]
     };
   },
   computed: {
